@@ -30,18 +30,45 @@ import './Board.css';
  **/
 
 class Board extends Component {
+  static defaultProps = {
+    nrows: 5,
+    ncols: 5,
+    // value should be between 0 and 1
+    chanceLightStartsOn: 0.25
+  }
 
   constructor(props) {
     super(props);
 
     // TODO: set initial state
+    this.state = {
+      hasWon: false,
+      board: this.createBoard()
+    }
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
 
   createBoard() {
     let board = [];
+    const { nrows, ncols, chanceLightStartsOn } = this.props;
     // TODO: create array-of-arrays of true/false values
+
+    // Rows
+    for (let y = 0; y < nrows; y++) {
+      let row = [];
+
+      // Columns
+      for (let x = 0; x < ncols; x++) {
+        // To decide whether the cell is on or off
+        // Returns a boolean value
+        row.push(Math.random() < chanceLightStartsOn);
+      }
+
+      // Build the row
+      board.push(row);
+    }
+
     return board
   }
 
@@ -66,23 +93,45 @@ class Board extends Component {
     // win when every cell is turned off
     // TODO: determine is the game has been won
 
-    this.setState({board, hasWon});
+    // this.setState({board, hasWon});
   }
 
 
   /** Render game board or winning message. */
 
   render() {
+    const { hasWon, board } = this.state;
+    const { nrows, ncols } = this.props;
+    let tblBoard = [];
 
-    // if the game is won, just show a winning msg & render nothing else
+    for (let y = 0; y < nrows; y++) {
+      let row = [];
+      
+      for (let x = 0; x < ncols; x++) {
+        let coordinate = `${y}-${x}`
+        row.push(<Cell isLit={board[y][x]} key={coordinate}/>)
+      }
 
-    // TODO
+      tblBoard.push(<tr key={y}>{row}</tr>)
+    }
 
-    // make table board
-
-    // TODO
+    return hasWon ? (
+      // if the game is won, just show a winning msg & render nothing else
+      <div>
+        <h2>You have won!</h2>
+      </div>
+    ) : (
+      // make table board
+      <div>
+        <table>
+          <tbody>
+            {tblBoard}
+          </tbody>
+        </table>
+      </div>
+    
+    )
   }
 }
-
 
 export default Board;
