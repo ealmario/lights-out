@@ -79,7 +79,6 @@ class Board extends Component {
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
 
-
     function flipCell(y, x) {
       // if this coord is actually on board, flip it
 
@@ -88,14 +87,23 @@ class Board extends Component {
       }
     }
 
-    // TODO: flip this cell and the cells around it
+    // Flip initial cell and its neighbors
+    flipCell(y,x);
+    // Left
+    flipCell(y, x - 1);
+    // Right
+    flipCell(y, x + 1);
+    // Top
+    flipCell(y + 1, x);
+    // Bottom
+    flipCell(y - 1, x);
 
     // win when every cell is turned off
     // TODO: determine is the game has been won
+    let hasWon = false;
 
-    // this.setState({board, hasWon});
+    this.setState({board, hasWon});
   }
-
 
   /** Render game board or winning message. */
 
@@ -109,7 +117,7 @@ class Board extends Component {
       
       for (let x = 0; x < ncols; x++) {
         let coordinate = `${y}-${x}`
-        row.push(<Cell isLit={board[y][x]} key={coordinate}/>)
+        row.push(<Cell isLit={board[y][x]} key={coordinate} flipCellsAroundMe={() => this.flipCellsAround(coordinate)}/>)
       }
 
       tblBoard.push(<tr key={y}>{row}</tr>)
@@ -129,7 +137,6 @@ class Board extends Component {
           </tbody>
         </table>
       </div>
-    
     )
   }
 }
