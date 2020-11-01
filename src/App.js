@@ -15,6 +15,7 @@ const AppDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   height: 100vh;
   width: 100vw;
 `
@@ -36,6 +37,7 @@ class App extends Component {
     this.onSettings = this.onSettings.bind(this);
     this.fromObjectives = this.fromObjectives.bind(this);
     this.fromSettings = this.fromSettings.bind(this);
+    this.fromGameStart = this.fromGameStart.bind(this);
     this.changeBoardSize = this.changeBoardSize.bind(this);
   }
 
@@ -57,6 +59,10 @@ class App extends Component {
 
   fromSettings() {
     this.setState({settings: false});
+  }
+
+  fromGameStart() {
+    this.setState({gameStart: false});
   }
   
   changeBoardSize(inp) {
@@ -82,6 +88,7 @@ class App extends Component {
             ncols={ncols}
             chanceLightStartsOn={chanceLightStartsOn}
             openTileNumber={openTileNumber}
+            fromGameStart={this.fromGameStart}
           />}
         {objectives  && <ObjectivesScreen fromObjectives={this.fromObjectives}/>}
         {settings  && <SettingsScreen fromSettings={this.fromSettings} changeBoardSize={this.changeBoardSize} nrows={nrows} ncols={ncols}/>}

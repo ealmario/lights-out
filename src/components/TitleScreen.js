@@ -45,15 +45,18 @@ class TitleScreen extends Component {
     }
 
     render () {
-        console.log(this.props);
-        const { objectives, settings } = this.props;
+        const { gameStart } = this.props;
         return(
             <StyledDiv>
                 <h1 className="header">Lights Out</h1>
                 <div className="btn-container">
-                    <button className="btn btn-solid" onClick={this.handleGameStart}>Start</button>
-                    <button className="btn btn-outline" onClick={this.handleObjectives}>Objectives</button>
-                    <button className="btn btn-outline" onClick={this.handleSettings}>Settings</button>
+                    {!gameStart && (
+                        <>
+                            <button className="btn btn-solid" onClick={this.handleGameStart}>Start</button>
+                            <button className="btn btn-outline" onClick={this.handleObjectives}>Objectives</button>
+                            <button className="btn btn-outline" onClick={this.handleSettings}>Settings</button>
+                        </>
+                    )}
                 </div>
             </StyledDiv>
         )

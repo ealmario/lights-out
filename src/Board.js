@@ -1,6 +1,14 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Cell from "./Cell";
-import './Board.css';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+  .btn {
+    padding: 0.75rem;
+    width: 130px;
+    margin-top: 0.5rem;
+  }
+`;
 
 
 /** Game board of Lights out.
@@ -38,6 +46,8 @@ class Board extends Component {
       hasWon: false,
       board: this.createBoard()
     }
+
+    this.handleFromGameStart = this.handleFromGameStart.bind(this);
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
@@ -122,19 +132,25 @@ class Board extends Component {
     )
   }
 
+  handleFromGameStart(e) {
+        e.preventDefault();
+        this.props.fromGameStart();
+    }
+
   render() {
     const { hasWon } = this.state;
 
     return hasWon ? (
       // if the game is won, just show a winning msg & render nothing else
-      <div>
+      <StyledDiv>
         <h2>You have won!</h2>
-      </div>
+      </StyledDiv>
     ) : (
       // make table board
-      <div>
+      <StyledDiv>
         {this.renderBoard()}
-      </div>
+        <button className="btn btn-solid" onClick={this.handleFromGameStart}>Back</button>
+      </StyledDiv>
     )
   }
 }
