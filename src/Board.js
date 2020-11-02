@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import Cell from "./Cell";
 import styled from 'styled-components';
 
-const StyledDiv = styled.div`
-  .btn {
-    padding: 0.75rem;
-    width: 130px;
-    margin-top: 0.5rem;
-  }
-`;
+import Cell from "./Cell";
+import Button from './components/utilities/Button';
 
+const StyledDiv = styled.div`
+  .btn-container {
+    margin-top: 2rem; 
+  }
+`
 
 /** Game board of Lights out.
  *
@@ -149,7 +148,9 @@ class Board extends Component {
       // make table board
       <StyledDiv>
         {this.renderBoard()}
-        <button className="btn btn-solid" onClick={this.handleFromGameStart}>Back</button>
+        <div className="btn-container">
+          <Button text="Back" variant="solid" onClick={this.handleFromGameStart} />
+        </div>
       </StyledDiv>
     )
   }

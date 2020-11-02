@@ -8,7 +8,7 @@ import SettingsScreen from './components/SettingsScreen';
 
 /** Simple app that just shows the LightsOut game. */
 const AppDiv = styled.div`
-  background-color: #003;
+  background-color: #303030;
   color: #fff;
   font-size: 1rem;
   display: flex;

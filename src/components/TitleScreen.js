@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import Button from './utilities/Button';
+
 const StyledDiv = styled.div`
     .title-screen,
     .btn-container {
@@ -12,12 +14,6 @@ const StyledDiv = styled.div`
 
     .header {
         margin-bottom: 2rem;
-    }
-
-    .btn {
-        padding: 0.75rem;
-        width: 130px;
-        margin-bottom: 0.5rem;
     }
 `;
 
@@ -52,9 +48,9 @@ class TitleScreen extends Component {
                 <div className="btn-container">
                     {!gameStart && (
                         <>
-                            <button className="btn btn-solid" onClick={this.handleGameStart}>Start</button>
-                            <button className="btn btn-outline" onClick={this.handleObjectives}>Objectives</button>
-                            <button className="btn btn-outline" onClick={this.handleSettings}>Settings</button>
+                            <Button text="Start" variant="solid" onClick={this.handleGameStart} />
+                            <Button text="Objectives" variant="outline" onClick={this.handleObjectives} />
+                            <Button text="Settings" variant="outline" onClick={this.handleSettings} />
                         </>
                     )}
                 </div>
