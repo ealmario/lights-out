@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 
 import Cell from "./Cell";
-import Button from './components/utilities/Button';
+import Button from './utilities/Button';
 
 const StyledDiv = styled.div`
   .btn-container {
