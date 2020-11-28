@@ -30,7 +30,6 @@ class App extends Component {
       nrows: 5,
       ncols: 5,
       chanceLightStartsOn: 0.25, // value should be between 0 and 1
-      openTileNumber: 6, // # of times the game should create open tiles
     }
     this.onGameStart = this.onGameStart.bind(this);
     this.onObjectives = this.onObjectives.bind(this);
@@ -70,7 +69,7 @@ class App extends Component {
   }
 
   render() {
-    const { gameStart, objectives, settings, nrows, ncols, chanceLightStartsOn, openTileNumber } = this.state;
+    const { gameStart, objectives, settings, nrows, ncols, chanceLightStartsOn } = this.state;
 
     return (
       <AppDiv>
@@ -87,11 +86,17 @@ class App extends Component {
             nrows={nrows}
             ncols={ncols}
             chanceLightStartsOn={chanceLightStartsOn}
-            openTileNumber={openTileNumber}
             fromGameStart={this.fromGameStart}
+            onSettings={this.onSettings}
           />}
         {objectives  && <ObjectivesScreen fromObjectives={this.fromObjectives}/>}
-        {settings  && <SettingsScreen fromSettings={this.fromSettings} changeBoardSize={this.changeBoardSize} nrows={nrows} ncols={ncols}/>}
+        {settings  && 
+          <SettingsScreen 
+            fromSettings={this.fromSettings} 
+            changeBoardSize={this.changeBoardSize} 
+            nrows={nrows} 
+            ncols={ncols}
+          />}
       </AppDiv>
     );
   }

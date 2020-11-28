@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Button from './utilities/Button';
@@ -6,14 +7,14 @@ import Button from './utilities/Button';
 const StyledDiv = styled.div`
     .title-screen,
     .btn-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .header {
-        margin-bottom: 2rem;
+      margin-bottom: 2rem;
     }
 `;
 
@@ -60,3 +61,7 @@ class TitleScreen extends Component {
 }
 
 export default TitleScreen;
+
+TitleScreen.propTypes = {
+  gameStart: PropTypes.bool,
+}

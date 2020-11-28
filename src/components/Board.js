@@ -138,6 +138,7 @@ class Board extends Component {
 
   render() {
     const { hasWon } = this.state;
+    const { onSettings } = this.props;
 
     return hasWon ? (
       // if the game is won, just show a winning msg & render nothing else
@@ -149,6 +150,7 @@ class Board extends Component {
       <StyledDiv>
         {this.renderBoard()}
         <div className="btn-container">
+          <Button text="Settings" variant="solid" onClick={onSettings} />
           <Button text="Back" variant="solid" onClick={this.handleFromGameStart} />
         </div>
       </StyledDiv>

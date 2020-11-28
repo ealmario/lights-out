@@ -4,50 +4,57 @@ import styled from 'styled-components';
 import Button from './utilities/Button';
 
 const StyledDiv = styled.div`
-       background-color: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;   
-    z-index: 2;
+  background-color: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;   
+  z-index: 2;
 
-    .container {
-        background: #424242;
-        border-radius: 4px;
-        padding: 4rem 2rem;
-        width: 90%;
+  .container {
+    background: #424242;
+    border-radius: 4px;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.25);
+    padding: 4rem 2rem;
+    width: 90%;
 
-        h2 {
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 0.75rem;
-            margin-bottom: 2rem;
-        }
+    h2 {
+        margin-bottom: 1rem;
     }
 
-    .content {
+    p {
+        font-size: 0.75rem;
         margin-bottom: 2rem;
     }
+  }
 
-    label, 
-    select {
-        font-size: 1rem;
+  .content {
+      margin-bottom: 2rem;
+  }
+
+  label, 
+  select {
+      font-size: 1rem;
+  }
+
+  select {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+
+    &:focus {
+        outline: none;
     }
+  }
 
-    select {
-        margin-left: 1rem;
-        padding: 0.5rem 1rem;
-
-        &:focus {
-            outline: none;
-        }
+  @media screen and (min-width: 768px) {
+    .container {
+      width: 500px;
     }
+  }
 `
 
 class SettingsScreen extends Component {

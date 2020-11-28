@@ -5,13 +5,25 @@ import styled from 'styled-components';
 const StyledDiv = styled.div`
   .btn {
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8125;
+    font-weight: 600;
+    margin-bottom: 0.8125rem;
+    letter-spacing: 0.25px;
     padding: 1rem;
+    text-transform: uppercase;
+    transition: 300ms ease;
     width: 130px;
-    margin-bottom: 0.5rem;
 
     &:hover {
       cursor: pointer;
+      box-shadow: 0px 4px 16px rgba(0,0,0,0.15);
+    }
+
+    &:active {
+      box-shadow: 0px 4px 4px rgba(0,0,0,0.3);
     }
 
     &:focus {
@@ -21,21 +33,26 @@ const StyledDiv = styled.div`
 
   .btn-solid {
     background-color: #66ccff;
+
+    &:hover {
+      background-color: #70cfff;
+    }
   }
 
   .btn-outline {
     border: 2px solid #66ccff;
     background: none;
     color: #66ccff;
+
+    &:hover {
+      background-color: #66ccff;
+      color: #303030;
+    }
   }
 
 `
 
 class Button extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     let variantSettings;
 
@@ -49,6 +66,8 @@ class Button extends Component {
       case 'text':
         variantSettings = 'text';
         break;
+      default:
+        variantSettings = 'solid';
     }
 
     const { text, onClick } = this.props;
