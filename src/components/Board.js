@@ -5,8 +5,32 @@ import Cell from "./Cell";
 import Button from './utilities/Button';
 
 const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .clicks {
+    margin-top: 2rem;
+  }
+
   .btn-container {
-    margin-top: 2rem; 
+    margin-top: 2rem;
+  }
+
+  @media screen and (min-width: 425px) {
+   .btn-container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+   }
+
+   @media screen and (min-width: 768px){
+     .btn-container {
+       width: 90%;
+     }
+   }
   }
 `
 
@@ -43,10 +67,12 @@ class Board extends Component {
     // TODO: set initial state
     this.state = {
       hasWon: false,
-      board: this.createBoard()
+      board: this.createBoard(),
+      clicks: 0
     }
 
     this.handleFromGameStart = this.handleFromGameStart.bind(this);
+    this.addClicks = this.addClicks.bind(this);
   }
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
@@ -78,7 +104,7 @@ class Board extends Component {
 
   flipCellsAround(coord) {
     let {ncols, nrows} = this.props;
-    let board = this.state.board;
+    let { board } = this.state;
     let [y, x] = coord.split("-").map(Number);
 
     function flipCell(y, x) {
@@ -100,10 +126,20 @@ class Board extends Component {
     // Bottom
     flipCell(y - 1, x);
 
+    this.addClicks();
+
     // win when every cell is turned off
     // TODO: determine is the game has been won
     let hasWon = board.every(row => row.every(cell => !cell));
     this.setState({board, hasWon});
+  }
+
+  // Add clicks
+  addClicks() {
+    let clicks = this.state.clicks;
+    clicks++
+
+    this.setState({clicks});
   }
 
   /** Render game board or winning message. */
@@ -132,18 +168,22 @@ class Board extends Component {
   }
 
   handleFromGameStart(e) {
-        e.preventDefault();
-        this.props.fromGameStart();
-    }
+    e.preventDefault();
+    this.props.fromGameStart();
+  }
 
   render() {
-    const { hasWon } = this.state;
+    const { hasWon, clicks } = this.state;
     const { onSettings } = this.props;
 
     return hasWon ? (
       // if the game is won, just show a winning msg & render nothing else
       <StyledDiv>
-        <h2>You have won!</h2>
+        <h2 className="title">You have won!</h2>
+        <p className="clicks">Number of Clicks: {clicks}</p>
+        <div className="btn-container">
+          <Button text="Back" variant="solid" onClick={this.handleFromGameStart} />
+        </div>
       </StyledDiv>
     ) : (
       // make table board

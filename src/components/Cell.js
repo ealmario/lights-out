@@ -6,14 +6,30 @@ const StyledTD = styled.td`
   width: 3.75rem;
 
   .cell {
-    background: #424242;
+    background-color: #424242;
     border-radius: 5px;
+    cursor: pointer;
     height: 95%;
     width: 95%;
+    transition: 300ms ease;
+
+    &:hover {
+      background-color: #525252;
+    }
   }
 
   .cell-lit {
-    background: #347fc4;
+    background-color: #6ea5d8;
+    box-shadow: 0px 0px 16px rgba(51,125,193, 1);
+
+    &:hover {
+      background-color: #8eb9e1;
+    }
+  }
+
+  @media screen and (min-width: 425px) {
+    height: 4.25rem;
+    width: 4.25rem;
   }
 
   @media screen and (min-width: 768px) {
