@@ -20,6 +20,12 @@ const AppDiv = styled.div`
   width: 100vw;
 `
 
+const Footer = styled.div`
+  font-size: 0.625rem;
+  font-weight: 200;
+  padding: 0.5rem 0;
+`
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -72,32 +78,35 @@ class App extends Component {
     const { gameStart, objectives, settings, nrows, ncols, chanceLightStartsOn } = this.state;
 
     return (
-      <AppDiv>
-        <TitleScreen 
-          gameStart={gameStart}
-          objectives={objectives}
-          settings={settings}
-          onGameStart={this.onGameStart}
-          onObjectives={this.onObjectives}
-          onSettings={this.onSettings}
-        />
-        {gameStart && 
-          <Board 
-            nrows={nrows}
-            ncols={ncols}
-            chanceLightStartsOn={chanceLightStartsOn}
-            fromGameStart={this.fromGameStart}
+      <>
+        <AppDiv>
+          <TitleScreen 
+            gameStart={gameStart}
+            objectives={objectives}
+            settings={settings}
+            onGameStart={this.onGameStart}
+            onObjectives={this.onObjectives}
             onSettings={this.onSettings}
-          />}
-        {objectives  && <ObjectivesScreen fromObjectives={this.fromObjectives}/>}
-        {settings  && 
-          <SettingsScreen 
-            fromSettings={this.fromSettings} 
-            changeBoardSize={this.changeBoardSize} 
-            nrows={nrows} 
-            ncols={ncols}
-          />}
-      </AppDiv>
+          />
+          {gameStart && 
+            <Board 
+              nrows={nrows}
+              ncols={ncols}
+              chanceLightStartsOn={chanceLightStartsOn}
+              fromGameStart={this.fromGameStart}
+              onSettings={this.onSettings}
+            />}
+          {objectives  && <ObjectivesScreen fromObjectives={this.fromObjectives}/>}
+          {settings  && 
+            <SettingsScreen 
+              fromSettings={this.fromSettings} 
+              changeBoardSize={this.changeBoardSize} 
+              nrows={nrows} 
+              ncols={ncols}
+            />}
+        </AppDiv>
+        <Footer> &copy; Eli Almario 2020</Footer>
+      </>
     );
   }
 }
