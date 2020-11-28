@@ -21,7 +21,7 @@ const StyledDiv = styled.div`
   @media screen and (min-width: 425px) {
    .btn-container{
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       width: 100%;
    }
@@ -174,7 +174,6 @@ class Board extends Component {
 
   render() {
     const { hasWon, clicks } = this.state;
-    const { onSettings } = this.props;
 
     return hasWon ? (
       // if the game is won, just show a winning msg & render nothing else
@@ -190,7 +189,6 @@ class Board extends Component {
       <StyledDiv>
         {this.renderBoard()}
         <div className="btn-container">
-          <Button text="Settings" variant="solid" onClick={onSettings} />
           <Button text="Back" variant="solid" onClick={this.handleFromGameStart} />
         </div>
       </StyledDiv>
